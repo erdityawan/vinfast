@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VinFast</title>
+
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- css -->
+	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Work+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/simplePagination.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<img src="images/logo.png" alt="VinFast Logo" class="logo">
+			<a href="#form-section" class="cta-button">Info dan Penawaran</a>
+		</div>
+	</header>
+
+	<main class="main about" data-parallax="container">
+		<section class="hero-section">
+			<img src="images/hero.svg" alt="Hero" class="hero-image">
+			<img src="images/hero-m.svg" alt="Hero m" class="hero-image-m">
+		</section>
+
+		<section class="form-section" id="form-section">
+			<h3>Minta Info & Penawaran Spesial Sekarang!</h3>
+			<p>Unbound Experience dengan VinFast</p>
+			<div class="lead-form">
+				<form id="form-leads" method="post" action="" enctype="multipart/form-data">
+					<div class="form-group">
+						<label>Nama</label>
+						<input type="text" placeholder="Masukkan nama anda" required>
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" placeholder="Masukkan email anda" required>
+					</div>
+					<div class="form-group">
+						<label>No HP</label>
+						<input type="tel" placeholder="Masukkan nomor HP anda" required>
+					</div>
+					<div class="form-group">
+						<label>Pilih Mobil</label>
+						<select required>
+							<option value="" disabled selected>Pilih Mobil</option>
+							<option value="VF e34">VF e34</option>
+							<option value="VF 5">VF 5</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Pilih Domisili</label>
+						<select required>
+							<option value="" disabled selected>Pilih Domisili</option>
+							<option value="Jakarta">Jakarta</option>
+							<option value="Bogor">Bogor</option>
+							<option value="Depok">Depok</option>
+							<option value="Tangerang">Tangerang</option>
+							<option value="Bekasi">Bekasi</option>
+							<option value="Bandung">Bandung</option>
+							<option value="Yogyakarta">Yogyakarta</option>
+							<option value="Surabaya">Surabaya</option>
+							<option value="Sidoarjo">Sidoarjo</option>
+							<option value="Mojokerto">Mojokerto</option>
+							<option value="Malang">Malang</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+					<div class="checkbox">
+						<input type="checkbox" name="checkbox" id="checkbox" required>
+						<label>Saya menerima <a href="https://vinfastauto.id/en/privacy-policy" target="_blank">Syarat dan Ketentuan serta Kebijakan Privasi</a>.</label>
+					</div>
+					<div class="captcha">
+						<div class="g-recaptcha" data-sitekey="6LeXRC8qAAAAACVxX_lpktrIfQJR5DYyQLMRjNjE" data-callback="onRecaptchaSuccess"></div>
+					</div>
+					<div class="form-group">
+						<button type="submit" name="btn" id="btn-submit" value="1" disabled>Submit</button>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<div id="success-popup" class="popup">
+	    <div class="popup-content">
+	        <h2>Terima Kasih!</h2>
+	        <h3>Informasi Anda telah berhasil dikirim.</h3>
+	        <p>Tim kami akan segera menghubungi Anda dengan info lebih lanjut mengenai Unbound Experience dengan VinFast dan penawaran spesial kami.</p>
+	        <button id="close-popup">Tutup</button>
+	    </div>
+	</div>
+
+	<footer class="footer">
+		<p>Tetap terhubung dengan kami :</p>
+		<div class="social-icons">
+			<a href="https://www.facebook.com/VinFast.Indonesia/" target="_blank"><img src="images/icon-facebook.svg"></a>
+			<a href="https://x.com/VinFastID" target="_blank"><img src="images/icon-x.svg"></a>
+			<a href="https://www.instagram.com/vinfast.indonesia/" target="_blank"><img src="images/icon-instagram.svg"></a>
+			<a href="https://www.tiktok.com/@vinfastindonesia" target="_blank"><img src="images/icon-tiktok.svg"></a>
+			<a href="https://www.youtube.com/@VinFastIndonesia" target="_blank"><img src="images/icon-youtube.svg"></a>
+		</div>
+		<p><span class="fs-30">Go Electric Today.</span></br>© 2024 PT VinFast Automobile Indonesia</p>
+	</footer>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript">
+		var checkbox = false;
+		var captcha = false;
+
+		$("#checkbox").on('click', function(){
+			console.log(this.checked);
+			if(this.checked==true){
+	            // $('#btn-submit').prop('disabled', false);
+	            checkbox = true;
+			}else{
+	            // $('#btn-submit').prop('disabled', true);
+	            checkbox = false;
+			}
+			checkSubmitEnable();
+		});
+
+
+		function onRecaptchaSuccess() {
+		    // $('#form-submit-button').prop('disabled', false);
+		    captcha = true;
+			checkSubmitEnable();
+		}
+
+		function checkSubmitEnable() {
+			if(checkbox && captcha){
+	            $('#btn-submit').prop('disabled', false);
+			}else{
+	            $('#btn-submit').prop('disabled', true);
+			}
+		}
+
+		$("#form-leads").submit(function(e){
+			e.preventDefault();
+			$(this)[0].reset();
+            $('#success-popup').fadeIn();
+		});
+
+	    $('#close-popup').on('click', function() {
+	        $('#success-popup').fadeOut();
+	    });
+	</script>
+</body>
+</html>
